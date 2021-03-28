@@ -1,19 +1,14 @@
 - hosts: localhost
 	  ignore_errors: no
 	  vars_prompt:
-	
 
 	  - name: cont_name
 	    prompt: " Enter Container name: "
 	    private: no
 	
-
-	
-
 	  - name: port
 	    prompt: "Enter the port number of docker host to attach with port 80 of the container: "
 	    private: no
-	
 
 	  tasks:
 	  - name: Adding Docker yum repository
@@ -24,7 +19,6 @@
 	          gpgcheck: no
 	          enabled: yes
 	
-
 	  - name: Installing the docker-ce module
 	    command:
 	      cmd: "yum install docker-ce --nobest -y"
@@ -40,14 +34,11 @@
 	    pip:
 	      name: docker-py
 	      
-	
-
 	  - name: stopping selinux
 	    selinux:
 	            policy: targeted
 	            state: permissive
 	
-
 	  - name: Pulling docker image
 	    docker_image:
 	          name: "sk/centos:v3"
@@ -74,8 +65,6 @@
 
 	  - debug:
 	            var: cinfo.container.NetworkSettings.IPAddress
-	
-
 	
 
 	  - name: Updating ansible inventory file
